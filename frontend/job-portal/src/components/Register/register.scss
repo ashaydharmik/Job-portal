@@ -1,0 +1,109 @@
+@import "../css-config/mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.register-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  .left {
+    width: 55%;
+    height: 100vh;
+    .left-content {
+      width: fit-content;
+      height: auto;
+      margin-left: 8rem;
+      margin-top: 7rem;
+      .left-heading {
+        h1 {
+          font-size: 3.3rem;
+        }
+        p {
+          font-size: 1.5rem;
+        }
+      }
+      .form-container {
+        margin-top: 2.5rem;
+        form {
+          .info {
+            display: flex;
+            justify-content: 
+            flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 2rem;
+            input {
+              width: 110%;
+              height: 4rem;
+              font-weight: 600;
+              &::placeholder {
+                padding-left: 1rem;
+              }
+            }
+          }
+          .checkbox {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            span {
+              font-size: 1.2rem;
+              color: grey;
+              font-weight: 500;
+            }
+          }
+          .buttons {
+            margin-top: 2rem;
+            button {
+              width: 20rem;
+              height: 4rem;
+              font-size: 2rem;
+              background-color: #ed5353;
+              border: none;
+              border-radius: 0.5rem;
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .content{
+        margin-top: 1.5rem;
+        p{
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: grey;
+            a{
+                color: black;
+                margin-left: 0.5rem;
+            }
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 45%;
+    background-image: url("../assets/reg.png");
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
+    .heading {
+      width: 100%;
+      text-align: center;
+      margin-top: 4rem;
+      p {
+        font-size: 3rem;
+        font-weight: 500;
+        color: white;
+      }
+    }
+  }
+}
