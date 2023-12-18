@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const navigate = useNavigate();
-  const initialValue = {username:"",email:"",mobile:"",password:""}
+  const initialValue = {email:"",password:""}
   const [formData, setFormData] = useState(initialValue)
 
   const changeHandler=(e)=>{
@@ -35,8 +35,8 @@ const Login = () => {
           <div className='form-container'>
           <form onSubmit={handleSubmit}>
               <div className='info'>
-              <input type='text' name='email' placeholder='Email' value={formData.email} onChange={changeHandler}  required/>            
-              <input type='text' name='password' placeholder='Password' value={formData.password} onChange={changeHandler} required/>
+              <input type='email' name='email' placeholder='Email' value={formData.email} onChange={changeHandler}  required/>            
+              <input type='password' name='password' placeholder='Password' value={formData.password} onChange={changeHandler} required/>
               </div>
               
               <div className="buttons">
