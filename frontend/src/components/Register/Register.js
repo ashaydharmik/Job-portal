@@ -20,24 +20,34 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     axios
-      .post("http://localhost:4000/register", formData)
-      .then((res) => {
-        setFormData(res.data)
-        console.log(res.data)
-        toast.success(res.data.message)
-        setTimeout(()=>{
-          navigate("/login");
-        },1000)
-   
-      })
-      .catch((error) => {
-        console.log("Error during registration:", error);
-        if (error.response && error.response.data && error.response.data.message) {
-        toast.error(error.response.data.message)
-        }
-      });
+  
+    try {
+      const response = await axios.post("http://localhost:4000/register", formData);
+  
+      // Assuming your API response includes a token and user name
+      const { token, recruiterName } = response.data;
+  
+      // Store the token and user name in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("userName", recruiterName);
+  
+      setFormData(response.data);
+      console.log(response.data);
+  
+      toast.success(response.data.message);
+  
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } catch (error) {
+      console.log("Error during registration:", error);
+  
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      }
+    }
   };
+  
   
 
   const handleClick = () => {

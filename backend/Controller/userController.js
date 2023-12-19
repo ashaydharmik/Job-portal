@@ -28,11 +28,12 @@ const registerUser = asyncHandler(async(req,res)=>{
         throw new Error("Please enter all the fields")
     }
 
+    
     const availableUser = await User.findOne({email})
     if(availableUser){
         res.status(400).json({message: "Email address already exists!!"})
     }
-
+    
     const hashedPassword = await bcrypt.hash(password, 10)
     const user = await User.create({
         username,
@@ -41,8 +42,11 @@ const registerUser = asyncHandler(async(req,res)=>{
         password : hashedPassword
     })
 
+
+
     if(user){
-        res.status(201).json({message:"User successfully created", _id: user.id, recruiterName: user.username})
+        const token = jwt.sign({email: user.email},process.env.ACCESS_KEY,{expiresIn: "5m"},)
+        res.status(201).json({message:"User successfully created", _id: user.id, recruiterName: user.username, token})
     }else{
         res.status(400)
         throw new Error("Invalid user data")

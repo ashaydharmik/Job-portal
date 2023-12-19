@@ -18,24 +18,36 @@ const Login = () => {
     })
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/login", formData)
-    .then((res)=>{
-      setFormData(res.data)
-      console.log(res.data)
-      toast.success(res.data.message)
-        setTimeout(()=>{
-          navigate("/register");
-        },1000)
-    })
-    .catch((error)=>{
+  
+    try {
+      const response = await axios.post("http://localhost:4000/login", formData);
+  
+      // Assuming your API response includes a token and user name
+      const { accessToken, recruiterName } = response.data;
+  
+      // Store the token and user name in localStorage
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("userName", recruiterName);
+  
+      setFormData(response.data);
+      console.log(response.data);
+  
+      toast.success(response.data.message);
+  
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (error) {
       console.log("Error during login:", error);
-        if (error.response && error.response.data && error.response.data.message) {
+  
+      if (error.response && error.response.data && error.response.data.message) {
         toast.error(error.response.data.message);
-        }
-    })
-  }
+      }
+    }
+  };
+  
 
   const handleClick=()=>{
     navigate("/")
