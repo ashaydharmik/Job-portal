@@ -128,7 +128,11 @@ const Register = () => {
             </div>
           </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+        <div className='heading'>
+        <p>Your Personal Job Finder</p>
+        </div>
+        </div>
       </section>
       <Toaster
        toastOptions={{
