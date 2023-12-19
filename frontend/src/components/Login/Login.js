@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import "./login.scss"
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import toast,{Toaster} from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,13 +20,30 @@ const Login = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log("form submitted")
+    axios.post("http://localhost:4000/login", formData)
+    .then((res)=>{
+      setFormData(res.data)
+      console.log(res.data)
+      toast.success(res.data.message)
+        setTimeout(()=>{
+          navigate("/register");
+        },1000)
+    })
+    .catch((error)=>{
+      console.log("Error during login:", error);
+        if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+        }
+    })
   }
 
   const handleClick=()=>{
     navigate("/")
   }
+
   return (
+    <>
+   
     <section className='login-container'>
       <div className='left'>
         <div className='left-content'>
@@ -35,10 +54,9 @@ const Login = () => {
           <div className='form-container'>
           <form onSubmit={handleSubmit}>
               <div className='info'>
-              <input type='email' name='email' placeholder='Email' value={formData.email} onChange={changeHandler}  required/>            
+              <input type='email' name='email' placeholder='Email' value={formData.email} onChange={changeHandler}  required/>               
               <input type='password' name='password' placeholder='Password' value={formData.password} onChange={changeHandler} required/>
               </div>
-              
               <div className="buttons">
                 <button type="submit">Sign In</button>
               </div>
@@ -56,6 +74,17 @@ const Login = () => {
         </div>
       </div>
     </section>
+    <Toaster
+    toastOptions={{
+      style: {
+        background: '#363636',
+        color: '#fff',
+        width:"350px",
+        fontSize:"18px"
+      }
+    }}
+    />
+    </>
   )
 }
 
