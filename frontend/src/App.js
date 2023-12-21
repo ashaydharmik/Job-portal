@@ -1,4 +1,5 @@
 import "./App.css"
+import Home from "./components/HomePage/Home";
 import Jobpost from "./components/JobPosting/Jobpost";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -9,7 +10,8 @@ function App() {
      <Routes>
       <Route path="/register" element={<Register/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/" element={<Jobpost/>}/>
+      <Route path="/jobPost" element={<Jobpost/>}/>
+      <Route path="/" element={<Home/>}/>
      </Routes>
     </div>
   );
