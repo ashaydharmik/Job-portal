@@ -1,0 +1,163 @@
+@import "../css-config/mixins.scss";
+
+.jobDetails-container {
+  width: 100%;
+//   height: 100%;
+  background: #ffefef;
+  .job-description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      width: 70%;
+      padding: 30px;
+      text-align: center;
+      font-size: 18px;
+      background: #ffffff;
+      margin-top: -13px;
+      z-index: 1;
+      font-weight: 500;
+    }
+  }
+  .job-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    .job-box {
+      width: 70%;
+      padding: 2rem 4rem;
+      background: #ffffff;
+
+      .jobType {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 40px;
+        p {
+          font-size: 14px;
+          color: #999999;
+          font-weight: 500;
+        }
+      }
+
+      .jobPosition {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .heading {
+          h1 {
+            font-size: 3.5rem;
+          }
+        }
+        .edit {
+          button {
+            border-radius: 3.922px;
+            background: #ed5353;
+            outline: none;
+            border: none;
+            color: white;
+            padding: 6px 24px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .location {
+        margin-top: 1rem;
+        p {
+          font-size: 14px;
+          color: #ed5353;
+          font-weight: 500;
+        }
+      }
+
+      .salary {
+        margin-top: 2rem;
+        .stipend-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          img {
+            width: 22px;
+          }
+          p{
+            font-size: 14px;
+            color: #999999;
+            font-weight: 500;
+          }
+        }
+        .price {
+          p {
+            font-size: 14px;
+            color: #999999;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .about-company {
+        margin-top: 2rem;
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1.6rem;
+          margin-top: 1rem;
+          color: #595959;
+          text-align: justify;
+        }
+      }
+
+      .about-job {
+        margin-top: 2rem;
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1.6rem;
+          margin-top: 1rem;
+          color: #595959;
+          text-align: justify;
+        }
+      }
+
+      .skills-container {
+        margin-top: 2rem;
+        h2 {
+          font-size: 2rem;
+        }
+        .skills {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          margin-top: 1rem;
+          p {
+            font-size: 1.6rem;
+            background: #ffeeee;
+            padding: 3px 16px;
+            border-radius: 2rem;
+          }
+        }
+      }
+
+      .information{
+        margin-top: 2rem;
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1.6rem;
+          margin-top: 1rem;
+          color: #595959;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import "./App.css"
 import Home from "./components/HomePage/Home";
+import JobDetails from "./components/JobDetails/JobDetails";
 import Jobpost from "./components/JobPosting/Jobpost";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -12,6 +13,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/jobPost" element={<Jobpost/>}/>
       <Route path="/" element={<Home/>}/>
+      <Route path="/jobDetails" element={<JobDetails/>}/>
      </Routes>
     </div>
   );

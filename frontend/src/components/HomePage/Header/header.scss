@@ -1,0 +1,102 @@
+@import "../../css-config/mixins.scss";
+
+.header {
+    // position: absolute;
+    // top: 0;
+    width: 100%;
+    height: 7.8rem;
+    background-image: url("../../assets/home-banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0 0 5rem 5rem;
+    .rectangles {
+      display: flex;
+      justify-content: space-between;
+      #rect1 {
+        position: relative;
+        width: 29rem;
+        top: 15px;
+        // left: 0;
+      }
+      #rect2 {
+        position: relative;
+        width: 18rem;
+        top: -14px;
+        left: 95px;
+      }
+      #rect3 {
+        position: relative;
+        width: 22rem;
+        top: -14px;
+        right: 0;
+      }
+    }
+    .menu {
+      display: flex;
+      justify-content: space-between;
+  
+      padding: 0 90px 0 90px;
+      position: relative;
+      top: -52px;
+      .menu-heading {
+        h1 {
+          font-size: 1.8rem;
+          color: white;
+        }
+      }
+      .buttons {
+        display: flex;
+        gap: 1.5rem;
+        #login {
+          width: 8rem;
+          padding: 0.6rem 0 0.6rem 0;
+          border-radius: 7px;
+          outline: none;
+          border: 1px solid white;
+          color: white;
+          background-color: #ff6b6b;
+          font-size: 14px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        #register {
+          width: 8rem;
+          padding: 0.6rem 0 0.6rem 0;
+          border-radius: 7px;
+          outline: none;
+          border: 1px solid white;
+          color: #ff6b6b;
+          background-color: white;
+          font-size: 14px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+      .buttons2{
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        #logout {
+          width: 8rem;
+          padding: 0.6rem 0 0.6rem 0;
+          border-radius: 7px;
+          outline: none;
+          border: 1px solid white;
+          color: white;
+          background-color: #ff6b6b;
+          font-size: 14px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+       p{
+        font-size: 16px;
+    color: white;
+  }
+  img{
+    width: 34px;
+    height: 34px;
+  }
+      }
+    }
+  }
