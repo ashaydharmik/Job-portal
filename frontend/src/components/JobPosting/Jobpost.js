@@ -3,9 +3,13 @@ import "./jobpost.scss";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../Context/Context";
 
 const Jobpost = () => {
   const navigate = useNavigate();
+  const{cancel} = useGlobal();
+
+
   const initialData = {
     companyName: "",
     addLogo: "",
@@ -48,9 +52,9 @@ const Jobpost = () => {
     
    axios.post("http://localhost:4000/jobPost", jobPostData, {headers})
    .then((res)=>{
-
-    console.log(res.data)
-    setJobPostData(res.data)
+     setJobPostData(res.data)
+     console.log(res.data)
+   
     toast.success(res.data.message);
     navigate("/")
    })
@@ -204,7 +208,7 @@ const Jobpost = () => {
                   </p>
                 </div>
                 <div className="buttons">
-                  <button type="button" id="cancel-btn">
+                  <button type="button" id="cancel-btn" onClick={cancel}>
                     Cancel
                   </button>
                   <button type="submit" id="add-btn" >

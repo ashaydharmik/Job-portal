@@ -3,11 +3,13 @@ import "./register.scss";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
+import { useGlobal } from "../Context/Context";
 
 const Register = () => {
   const navigate = useNavigate();
   const initialValue = { username: "", email: "", phone: "", password: "" };
   const [formData, setFormData] = useState(initialValue);
+  const {login} = useGlobal()
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -37,7 +39,7 @@ const Register = () => {
       toast.success(response.data.message);
   
       setTimeout(() => {
-        navigate("/jobPost");
+        navigate("/");
       }, 1000);
     } catch (error) {
       console.log("Error during registration:", error);
@@ -50,9 +52,7 @@ const Register = () => {
   
   
 
-  const handleClick = () => {
-    navigate("/login");
-  };
+  
    
    
   return (
@@ -120,7 +120,7 @@ const Register = () => {
             <div className="content">
               <p>
                 Already have an account?
-                <a href="#" onClick={handleClick}>
+                <a href="#" onClick={login}>
                   Sign In
                 </a>
               </p>

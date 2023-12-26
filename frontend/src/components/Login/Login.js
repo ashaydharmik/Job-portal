@@ -3,11 +3,13 @@ import "./login.scss"
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import toast,{Toaster} from "react-hot-toast";
+import { useGlobal } from '../Context/Context';
 
 const Login = () => {
   const navigate = useNavigate();
   const initialValue = {email:"",password:""}
   const [formData, setFormData] = useState(initialValue)
+  const {register} = useGlobal()
 
   const changeHandler=(e)=>{
     const {name,value} = e.target;
@@ -49,9 +51,7 @@ const Login = () => {
   };
   
 
-  const handleClick=()=>{
-    navigate("/")
-  }
+ 
 
   return (
     <>
@@ -76,7 +76,7 @@ const Login = () => {
             </form>
           </div>
           <div className='content'>
-            <p>Don’t have an account? <span><a href='#' onClick={handleClick}>Sign Up</a></span></p>
+            <p>Don’t have an account? <span><a href='#' onClick={register}>Sign Up</a></span></p>
           </div>
         </div>
       </div>

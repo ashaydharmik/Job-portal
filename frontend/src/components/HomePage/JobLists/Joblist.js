@@ -4,8 +4,11 @@ import logo from "../../assets/logo.png"
 import group from"../../assets/Group1.png"
 import vector from "../../assets/Vector.png"
 import flag from "../../assets/flag.png"
+import { useGlobal } from '../../Context/Context';
 
 const Joblist = () => {
+    const {isRegistered, isLoggedIn} = useGlobal();
+
   return (
     <>
       <div className='joblist'>
@@ -35,13 +38,19 @@ const Joblist = () => {
                     <p>Javascript</p>
                     <p>HTML</p>
                 </div>
+                {
+                    isLoggedIn || isRegistered ? (
+                        <div className='buttons'>
+                            <button type='button' id='edit'>Edit job</button>
+                            <button type='button' id='view'>View Details</button>
+                        </div> 
+                    ):(
                 <div className='buttons'>
                     <button type='button'id='view'>View Details</button>
                 </div>
-                {/* <div className='buttons'>
-                    <button type='button' id='edit'>Edit job</button>
-                    <button type='button' id='view'>View Details</button>
-                </div> */}
+                    )
+                }
+                
             </div>
         </div>
       </div>
