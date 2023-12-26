@@ -7,7 +7,8 @@ const jobPosting = asyncHandler(async(req,res)=>{
 
     //1. token is getting validated before creating a job post 
     
-    const {recruiterName,
+    const {
+      // recruiterName,
         companyName,
         addLogo,
         jobPosition,
@@ -18,20 +19,25 @@ const jobPosting = asyncHandler(async(req,res)=>{
         description,
         aboutCompany,
         skills,
-        information} = req.body;
+        information} = req.body;  
+        
+
+        // const {token } = req.headers;
+        // console.log(token)
 
         let skillsArray = skills;
         if(typeof skills === "string"){
             skillsArray= skills.split(',').map(skill => skill.trim())
         }
 
-        if(!recruiterName || !companyName || !addLogo || !jobPosition || !salary || !jobType || !remote ||!location || !description || !aboutCompany || !skills || !information){
+        if( !companyName || !addLogo || !jobPosition || !salary || !jobType || !remote ||!location || !description || !aboutCompany || !skills || !information){
             res.status(400)
             throw new Error("Please enter all the fields")
         }      
         
+
     const newJob = await Job.create({
-        recruiterName,companyName,addLogo,jobPosition,salary,jobType,remote,location,description,aboutCompany,skills,information
+        companyName,addLogo,jobPosition,salary,jobType,remote,location,description,aboutCompany,skills: skillsArray,information
     })
 
     if(newJob){
@@ -47,7 +53,7 @@ const jobPosting = asyncHandler(async(req,res)=>{
 //update job-post 
 const updateJobPost = asyncHandler(async (req, res) => {
       const {
-        recruiterName,
+        // recruiterName,
         companyName,
         addLogo,
         jobPosition,
@@ -73,10 +79,11 @@ const updateJobPost = asyncHandler(async (req, res) => {
         return res.status(404).json({ message: "Job post not found." });
       }
 
+
       const updatedPost = await Job.findByIdAndUpdate(
         _id,
         {
-            recruiterName,
+            // recruiterName,
             companyName,
             addLogo,
             jobPosition,

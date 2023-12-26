@@ -37,7 +37,7 @@ const Register = () => {
       toast.success(response.data.message);
   
       setTimeout(() => {
-        navigate("/login");
+        navigate("/jobPost");
       }, 1000);
     } catch (error) {
       console.log("Error during registration:", error);

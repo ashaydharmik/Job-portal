@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const jobSchema = new mongoose.Schema({
     recruiterName:{
         type:String,
-        required: [true, "please enter recruiter name"]
+        // required: [true, "please enter recruiter name"]
     },
     companyName:{
         type:String,

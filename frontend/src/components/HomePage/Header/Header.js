@@ -3,8 +3,18 @@ import rectangle1 from "../../assets/Rectangle1.png"
 import rectangle2 from "../../assets/Rectangle2.png"
 import rectangle3 from "../../assets/Rectangle3.png"
 import profile from "../../assets/profile.png"
+import { useNavigate } from 'react-router-dom'
 import "./header.scss"
 const Header = () => {
+const navigate = useNavigate();
+
+  const login=()=>{
+    navigate("/login")
+  }
+  const register=()=>{
+    navigate("/register")
+  }
+
   return (
     <>
       <div className='header'>
@@ -18,8 +28,8 @@ const Header = () => {
                 <h1>Jobfinder</h1>
                 </div>
                 <div className='buttons'>
-                <button id="login">Login</button>
-                <button id='register'>Register</button>
+                <button id="login" onClick={login}>Login</button>
+                <button id='register' onClick={register}>Register</button>
                 </div>
                 {/* <div className='buttons2'>
                 <button id='logout'>Logout</button>

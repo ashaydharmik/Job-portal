@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import "./jobpost.scss";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Jobpost = () => {
+  const navigate = useNavigate();
   const initialData = {
     companyName: "",
-    logoUrl: "",
+    addLogo: "",
     jobPosition: "",
     salary: "",
     jobType: "",
-    remoteOffice: "",
+    remote: "",
     location: "",
-    jobDescription: "",
+    description: "",
     aboutCompany: "",
     skills: "",
     information: "",
@@ -27,15 +29,30 @@ const Jobpost = () => {
       [name]: value,
     });
   };
+  
+ 
 
   const handleJobPostSubmit = (e) => {
     e.preventDefault();
+    postJob();
+  }
 
-   axios.post("http://localhost:4000/jobPost", jobPostData)
+    const postJob=()=>{
+      const registerToken = localStorage.getItem("token")
+      // console.log(registerToken)
+      const headers = {
+        'Authorization': `Bearer ${registerToken}`,
+        'Content-Type': 'application/json', 
+      };
+  
+    
+   axios.post("http://localhost:4000/jobPost", jobPostData, {headers})
    .then((res)=>{
+
     console.log(res.data)
     setJobPostData(res.data)
     toast.success(res.data.message);
+    navigate("/")
    })
    .catch((error)=>{
     console.log(error)
@@ -71,9 +88,9 @@ const Jobpost = () => {
                     <label>Add logo URL</label>
                     <input
                       type="text"
-                      name="logoUrl"
+                      name="addLogo"
                       placeholder="Enter the link"
-                      value={jobPostData.logoUrl}
+                      value={jobPostData.addLogo}
                       onChange={handleChange}
                       required
                     />
@@ -118,8 +135,8 @@ const Jobpost = () => {
                     <label>Remote/office</label>
                     <select
                       id="dropdown"
-                      name="remoteOffice"
-                      value={jobPostData.remoteOffice}
+                      name="remote"
+                      value={jobPostData.remote}
                       onChange={handleChange}
                       required
                     >
@@ -143,10 +160,10 @@ const Jobpost = () => {
                     <label>Job Description</label>
                     <textarea
                       type="text"
-                      name="jobDescription"
+                      name="description"
                       id="jobDescription"
                       placeholder="Type about your company"
-                      value={jobPostData.jobDescription}
+                      value={jobPostData.description}
                       onChange={handleChange}
                       required
                     />
@@ -190,7 +207,7 @@ const Jobpost = () => {
                   <button type="button" id="cancel-btn">
                     Cancel
                   </button>
-                  <button type="submit" id="add-btn">
+                  <button type="submit" id="add-btn" >
                     + Add Job
                   </button>
                 </div>

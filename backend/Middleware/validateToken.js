@@ -3,7 +3,7 @@ const asyncHandler = require("../Middleware/asyncHandler")
 require('dotenv').config();
 
 const validateToken = asyncHandler(async(req,res,next)=>{
-   const accessToken = req.headers.authorization
+   const accessToken = req.headers.authorization || req.headers.Authorization
    console.log(accessToken)
     
    if(accessToken && accessToken.startsWith("Bearer")){
