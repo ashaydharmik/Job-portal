@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import "./jobpost.scss";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import { useGlobal } from "../Context/Context";
 
 const Jobpost = () => {
-  const navigate = useNavigate();
-  const{cancel} = useGlobal();
-
-
+  const{cancel,handleEditJob, fetchSingleJob} = useGlobal();
+  console.log("fetchSingleJob1", fetchSingleJob);
+  
   const initialData = {
     companyName: "",
     addLogo: "",
@@ -22,9 +21,20 @@ const Jobpost = () => {
     aboutCompany: "",
     skills: "",
     information: "",
+    createdAt:"",
+    updatedAt:""
   };
 
-  const [jobPostData, setJobPostData] = useState(initialData);
+
+  //check if we are in add mode or edit mode
+  const initialFormData = fetchSingleJob ? { ...fetchSingleJob.fetchJob }: initialData;
+  
+  console.log("fetchSingleJob", fetchSingleJob);
+
+  console.log("initialData", initialData);
+  
+  const [jobPostData, setJobPostData] = useState(initialFormData);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,38 +43,68 @@ const Jobpost = () => {
       [name]: value,
     });
   };
-  
- 
+  console.log("jobPostData", jobPostData); // Check the state after updating
 
-  const handleJobPostSubmit = (e) => {
+
+  const handleJobSubmit = (e) => {
     e.preventDefault();
-    postJob();
+    jobPostData._id ? handleEditButton() : postJob();
   }
+
+ 
 
     const postJob=()=>{
       const registerToken = localStorage.getItem("token")
-      // console.log(registerToken)
+      console.log(registerToken)
       const headers = {
         'Authorization': `Bearer ${registerToken}`,
         'Content-Type': 'application/json', 
       };
-  
     
    axios.post("http://localhost:4000/jobPost", jobPostData, {headers})
    .then((res)=>{
      setJobPostData(res.data)
      console.log(res.data)
-   
-    toast.success(res.data.message);
-    navigate("/")
+     toast.success(res.data.message);
+    setTimeout(() => {
+      setJobPostData(initialData)
+    }, 1000);
    })
    .catch((error)=>{
+    // console.error("Axios error:", error);
     console.log(error)
     if (error.response && error.response.data && error.response.data.message) {
       toast.error(error.response.data.message);
     }
    })
   };
+
+  const handleEditButton=()=>{
+    const jobId = jobPostData._id;
+
+    axios.put(`http://localhost:4000/updateJobPost`, jobPostData, {
+      params: {
+        _id: jobId,
+      },
+    })
+      .then((res)=>{
+        setJobPostData(res.data)
+        console.log(res.data)
+        toast.success(res.data.message);
+       setTimeout(() => {
+         setJobPostData(initialData)
+       }, 1000);
+      })
+      .catch((error)=>{
+       // console.error("Axios error:", error);
+       console.log(error)
+       if (error.response && error.response.data && error.response.data.message) {
+         toast.error(error.response.data.message);
+       }
+      })
+
+}
+ 
 
   return (
     <>
@@ -75,7 +115,7 @@ const Jobpost = () => {
               <h1>Add job description</h1>
             </div>
             <div className="form-container">
-              <form onSubmit={handleJobPostSubmit}>
+              <form onSubmit={handleJobSubmit}>
                 <div className="info">
                   <p>
                     <label>Company Name</label>
@@ -211,9 +251,17 @@ const Jobpost = () => {
                   <button type="button" id="cancel-btn" onClick={cancel}>
                     Cancel
                   </button>
+                  {
+                    jobPostData._id ? (
                   <button type="submit" id="add-btn" >
+                    Update Job
+                  </button>
+                    ):(
+                      <button type="submit" id="add-btn" >
                     + Add Job
                   </button>
+                    )
+                  }
                 </div>
               </form>
             </div>

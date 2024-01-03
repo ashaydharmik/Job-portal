@@ -35,7 +35,6 @@ const Register = () => {
   
       setFormData(response.data);
       console.log(response.data);
-  
       toast.success(response.data.message);
   
       setTimeout(() => {
