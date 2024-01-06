@@ -6,7 +6,7 @@ import axios from "axios";
 import { useGlobal } from "../Context/Context";
 
 const Jobpost = () => {
-  const{cancel,handleEditJob, fetchSingleJob} = useGlobal();
+  const{cancel, fetchSingleJob, addSkillsToList} = useGlobal();
   console.log("fetchSingleJob1", fetchSingleJob);
   
   const initialData = {
@@ -66,6 +66,7 @@ const Jobpost = () => {
      setJobPostData(res.data)
      console.log(res.data)
      toast.success(res.data.message);
+     addSkillsToList(jobPostData.skills)
     setTimeout(() => {
       setJobPostData(initialData)
     }, 1000);

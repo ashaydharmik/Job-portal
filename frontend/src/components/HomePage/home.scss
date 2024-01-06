@@ -75,6 +75,8 @@
           justify-content: flex-start;
           align-items: center;
           gap: 15px;
+          overflow-x: scroll;
+    overflow-y: hidden;
           .box {
             display: flex;
             align-items: center;

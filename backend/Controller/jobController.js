@@ -22,9 +22,6 @@ const jobPosting = asyncHandler(async(req,res)=>{
         information} = req.body;  
         
 
-        // const {token } = req.headers;
-        // console.log(token)
-
         let skillsArray = skills;
         if(typeof skills === "string"){
             skillsArray= skills.split(',').map(skill => skill.trim())

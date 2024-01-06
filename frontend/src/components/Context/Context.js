@@ -9,6 +9,7 @@ const AppProvider = ({children}) =>{
     const [username, setUserName] = useState("")
     const [isRegistered, setIsRegistered] = useState(false)
     const [fetchSingleJob, setFetchSingleJob] = useState(null)
+    const [allSkills, setAllSkills] = useState([])
 
     const login=()=>{
         navigate("/login")
@@ -85,6 +86,28 @@ const handleViewJob = (jobId) => {
       });
   };
   
+
+  const addSkillsToList = (newSkills) => {
+    // Split the newSkills by comma
+    const skillsArray = newSkills.split(',').map(skill => skill.trim());
+  
+    // Retrieve existing skills from local storage
+    const existingSkills = localStorage.getItem("skills");
+  
+    // Parse the existingSkills as JSON or initialize an empty array
+    const parsedSkills = existingSkills ? JSON.parse(existingSkills) : [];
+  
+    // Combine existing skills with new skills and remove duplicates
+    const updatedSkills = Array.from(new Set([...parsedSkills, ...skillsArray]));
+  
+    // Save the updated skills back to local storage as a JSON string
+    localStorage.setItem("skills", JSON.stringify(updatedSkills));
+  
+    // Updating the state with the new skills
+    setAllSkills((prevSkills) => [...new Set([...prevSkills, ...skillsArray])]);
+  }
+  
+  
   
 
     return(
@@ -105,7 +128,9 @@ const handleViewJob = (jobId) => {
                 handleViewJob,
                 fetchSingleJob, 
                 setFetchSingleJob,
-                handleEditJob
+                handleEditJob,
+                allSkills,
+                addSkillsToList,
             }}>
             {children}
         </AppContext.Provider>

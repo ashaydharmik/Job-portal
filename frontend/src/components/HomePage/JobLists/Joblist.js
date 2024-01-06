@@ -11,11 +11,13 @@ const Joblist = () => {
   const [fetchAllJobs, setFetchAllJobs] = useState([]);
 const {handleViewJob, handleEditJob} = useGlobal()
 
+
   useEffect(() => {
     axios.get('http://localhost:4000/getJobPost')
     .then((res) => {
       if (Array.isArray(res.data.jobPost)) {
         setFetchAllJobs(res.data.jobPost);
+        
       }
       console.log(res.data);
     })
@@ -24,7 +26,7 @@ const {handleViewJob, handleEditJob} = useGlobal()
     })
   }, []);
 
- 
+
  
   
   return (
