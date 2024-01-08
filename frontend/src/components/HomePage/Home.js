@@ -12,6 +12,7 @@ const Home = () => {
   const {isRegistered, isLoggedIn,addJob} = useGlobal();
   const [selectedSkills, setSelectedSkills] = useState([])
   const [allSkills, setAllSkills] = useState([]);
+  const [searchQuery,setSearchQuery] = useState([])
 
   useEffect(() => {
     // Retrieve skills from local storage
@@ -44,6 +45,8 @@ const Home = () => {
     const updatedSkills = selectedSkills.filter(skill => skill !== deleteSkill);
     setSelectedSkills(updatedSkills);
   }
+
+  //clear button functionality
   const deleteAllSelectedSkills=()=>{
     setSelectedSkills([])
   }
@@ -58,6 +61,8 @@ const Home = () => {
                 <div className='search-bar'>
                     <BsSearch />
                     <input type='text'  name='search' placeholder='Type any job title'
+                    value={searchQuery}
+                    onChange={(e)=> setSearchQuery(e.target.value)}
                    />
                 </div>
                 <div className='filter-container'>
@@ -126,7 +131,7 @@ const Home = () => {
         </div>
 
         <div className='joblist-container'>
-          <Joblist/>
+          <Joblist searchQuery={searchQuery} selectedSkills={selectedSkills}/>
         </div>
       </section>
     </>

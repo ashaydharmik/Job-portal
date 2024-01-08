@@ -6,10 +6,11 @@ import { useGlobal } from '../../Context/Context';
 import axios from "axios"
 
 
-const Joblist = () => {
+const Joblist = ({searchQuery, selectedSkills}) => {
   const { isRegistered, isLoggedIn } = useGlobal();
   const [fetchAllJobs, setFetchAllJobs] = useState([]);
 const {handleViewJob, handleEditJob} = useGlobal()
+const [searchedJobs, setSearchedJobs] = useState([])
 
 
   useEffect(() => {
@@ -27,12 +28,33 @@ const {handleViewJob, handleEditJob} = useGlobal()
   }, []);
 
 
+  useEffect(()=>{
+    if(searchQuery && typeof searchQuery === 'string'){
+      const query = searchQuery.toLowerCase();
+
+      const filteredJob = fetchAllJobs.filter(job => job.jobPosition && job.jobPosition.toLowerCase().includes(query));
+      
+      if(selectedSkills.length > 0 ){
+        const filteredBySkills = filteredJob.filter(job => job.skills.some(skill => selectedSkills.includes(skill)));
+        setSearchedJobs(filteredBySkills)             
+      }else{
+        setSearchedJobs(filteredJob) 
+      }
+
+    }else if (selectedSkills.length > 0){ //if there is not query in search but skills are selected
+      const filteredBySkills = fetchAllJobs.filter(job => job.skills.some(skill => selectedSkills.includes(skill)));
+      setSearchedJobs(filteredBySkills)            
+    }else{
+      setSearchedJobs(fetchAllJobs)  
+    }
+    
+  },[searchQuery, selectedSkills, fetchAllJobs])
  
   
   return (
     <>
 
-      {fetchAllJobs.map((job) => (
+      {searchedJobs.map((job) => (
         <div className='joblist' key={job._id}>
           <div className='logo'>
             <img src={job.addLogo} alt="" />
