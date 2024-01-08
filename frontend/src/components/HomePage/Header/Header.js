@@ -16,7 +16,6 @@ const {setIsLoggedIn, username, setUserName, isLoggedIn, setIsRegistered, login,
 
   useEffect(()=>{
     const storedUserName = localStorage.getItem("userName")
-
     if(storedUserName){
       setUserName(storedUserName)
       setIsLoggedIn(true)

@@ -45,7 +45,7 @@ const registerUser = asyncHandler(async(req,res)=>{
 
 
     if(user){
-        const token = jwt.sign({email: user.email},process.env.ACCESS_KEY)
+        const token = jwt.sign({email: user.email},process.env.ACCESS_KEY,{expiresIn: "1m"})
         res.status(201).json({message:"User successfully created", _id: user.id, recruiterName: user.username, token})
     }else{
         res.status(400)
@@ -72,7 +72,7 @@ const loginUser = asyncHandler(async(req,res)=>{
                 password: user.password
             }
         },process.env.ACCESS_KEY,
-       
+       {expiresIn:"1m"}
         )
         res.status(201).json({message:"User Successfully logIn", accessToken, recruiterName:user.username, id:user.id})
         

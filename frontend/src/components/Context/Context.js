@@ -21,9 +21,11 @@ const AppProvider = ({children}) =>{
     const logOut=()=>{
         setIsLoggedIn(false)
         setIsRegistered(false)
+        localStorage.removeItem("userName")
     }
 
-    const addJob=()=>{
+    const addJob=(e)=>{
+      e.preventDefault();
         navigate("/jobPost")
     }
 

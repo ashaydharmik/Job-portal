@@ -66,10 +66,7 @@ const Home = () => {
                    />
                 </div>
                 <div className='filter-container'>
-                  {
-                     
-                    isLoggedIn || isRegistered ? (
-                      <>
+                  
                   <div className='inner-filter'>
                     <div className='left'>
                     <select
@@ -98,13 +95,18 @@ const Home = () => {
                     </div>
                   </div>
                   <div className='addPost'>
-                  <button type='button' id="postJob" onClick={addJob}>+ Add Job</button>
+                  {
+                     
+                     isLoggedIn || isRegistered ? (
+                  <button type='button' id="postJob" onClick={(e)=> addJob(e)}>+ Add Job</button>
+                  ):(<></>)
+                  }
                    </div>
-                   </>
-                    ):(                  
-                    <div className='inner-filter'>
-                      <div className='left'>
-                      <select
+                  
+                                   
+                   {/* <div className='inner-filter'>
+                       <div className='left'>
+                       <select
                         id="select"
                         name="skills"
                       >
@@ -122,10 +124,9 @@ const Home = () => {
                       <div className='right'>
                           <p>clear</p>
                       </div>
-                  </div>
+                  </div> */}
 
-                    )
-                  }
+                   
                 </div>
             </div>
         </div>

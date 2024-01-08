@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./jobpost.scss";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -6,8 +6,12 @@ import axios from "axios";
 import { useGlobal } from "../Context/Context";
 
 const Jobpost = () => {
-  const{cancel, fetchSingleJob, addSkillsToList} = useGlobal();
+  const{cancel, fetchSingleJob, setFetchSingleJob, addSkillsToList} = useGlobal();
   console.log("fetchSingleJob1", fetchSingleJob);
+
+  useEffect(() => {
+    setFetchSingleJob(null);
+  }, [setFetchSingleJob]);
   
   const initialData = {
     companyName: "",
@@ -69,6 +73,8 @@ const Jobpost = () => {
      addSkillsToList(jobPostData.skills)
     setTimeout(() => {
       setJobPostData(initialData)
+      setFetchSingleJob(null);
+      localStorage.removeItem('jobData');
     }, 1000);
    })
    .catch((error)=>{

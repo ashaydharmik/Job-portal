@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './jobDetails.scss';
 import Header from '../HomePage/Header/Header';
 import stipend from '../assets/stipend.png';
 import { useGlobal } from '../Context/Context';
 
 const JobDetails = () => {
-  const {fetchSingleJob, setFetchSingleJob,isLoggedIn,isRegistered} = useGlobal(null);
+  const {fetchSingleJob, setFetchSingleJob,isLoggedIn,isRegistered,handleEditJob} = useGlobal(null);
 
   useEffect(() => {
     const storedJobData = localStorage.getItem('jobData');
@@ -20,6 +20,7 @@ const JobDetails = () => {
   }
 
   const {
+    _id,
     companyName,
     addLogo,
     jobPosition,
@@ -56,7 +57,7 @@ const JobDetails = () => {
               <div className='edit'>
                 {
                   isLoggedIn || isRegistered ? (
-                    <button type='button'>Edit job</button>
+                    <button type='button' onClick={()=> handleEditJob(_id)}>Edit job</button>
                   ):(<p></p>)
                 }
               </div>
