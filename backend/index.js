@@ -14,7 +14,14 @@ app.use("/",(req,res)=>{
     res.send("server is running")
 })
 
-app.use(cors())
+app.use(cors(
+    {
+        origin : ["https://job-portal-backend-seven.vercel.app"],
+        methods : ["GET","POST","PUT"],
+        credentials : true
+    }
+    
+));
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
