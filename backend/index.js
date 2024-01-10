@@ -10,7 +10,11 @@ const cors = require("cors")
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://job-portal-frontend-jf4zawj3l-ashays-projects-5d384c1a.vercel.app"],
+    methods: ["GET", "POST", "PUT"],
+    credentials: true,
+}));
 
 
 app.use("/",(req,res)=>{
