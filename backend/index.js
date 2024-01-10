@@ -16,7 +16,7 @@ app.use("/",(req,res)=>{
 
 app.use(cors(
     {
-        origin : ["https://job-portal-backend-seven.vercel.app"],
+        origin : ["https://job-portal-frontend-ten.vercel.app"],
         methods : ["GET","POST","PUT"],
         credentials : true
     }
