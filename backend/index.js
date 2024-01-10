@@ -10,14 +10,7 @@ const cors = require("cors")
 
 const app = express();
 
-app.use(cors(
-    {
-        origin : ["https://job-portal-frontend-37sdwf6gi-ashays-projects-5d384c1a.vercel.app"],
-        methods : ["GET","POST","PUT"],
-        credentials : true
-    }
-    
-));
+app.use(cors());
 // Enable preflight requests for all routes
 app.options('*', cors());
 
