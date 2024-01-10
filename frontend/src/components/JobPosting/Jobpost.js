@@ -65,9 +65,7 @@ const Jobpost = () => {
         'Content-Type': 'application/json', 
       };
     
-   axios.post("https://job-portal-backend-seven.vercel.app/jobPost", jobPostData, {headers},{
-    withCredentials: true,
-  })
+   axios.post("http://localhost:4000/jobPost", jobPostData, {headers})
    .then((res)=>{
      setJobPostData(res.data)
      console.log(res.data)
@@ -91,8 +89,7 @@ const Jobpost = () => {
   const handleEditButton=()=>{
     const jobId = jobPostData._id;
 
-    axios.put(`https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/updateJobPost`,
-     {
+    axios.put(`http://localhost:4000/updateJobPost`, jobPostData, {
       params: {
         _id: jobId,
       },

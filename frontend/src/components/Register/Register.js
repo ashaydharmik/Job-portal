@@ -24,7 +24,7 @@ const Register = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/register", formData);
+      const response = await axios.post("http://localhost:4000/register", formData);
   
       // Assuming your API response includes a token and user name
       const { token, recruiterName } = response.data;

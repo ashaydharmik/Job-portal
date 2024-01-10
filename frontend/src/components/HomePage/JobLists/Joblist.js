@@ -14,7 +14,7 @@ const [searchedJobs, setSearchedJobs] = useState([])
 
 
   useEffect(() => {
-    axios.get('https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/getJobPost')
+    axios.get('http://localhost:4000/getJobPost')
     .then((res) => {
       if (Array.isArray(res.data.jobPost)) {
         setFetchAllJobs(res.data.jobPost);
