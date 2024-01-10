@@ -44,7 +44,7 @@ const AppProvider = ({children}) =>{
 
 //to fetch single job view details button function
 const handleViewJob = (jobId) => {
-    axios.get('http://localhost:4000/fetchJobPost', {
+    axios.get('https://job-portal-backend-jk06.onrender.com/fetchJobPost', {
       params: {
         _id: jobId,
       }
@@ -68,7 +68,7 @@ const handleViewJob = (jobId) => {
   //handle edit job button functionality
   const handleEditJob = (jobId) => {
     axios
-      .get('http://localhost:4000/fetchJobPost', {
+      .get('https://job-portal-backend-jk06.onrender.com/fetchJobPost', {
         params: {
           _id: jobId,
         },

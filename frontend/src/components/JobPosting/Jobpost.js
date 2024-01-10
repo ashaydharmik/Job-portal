@@ -65,7 +65,7 @@ const Jobpost = () => {
         'Content-Type': 'application/json', 
       };
     
-   axios.post("http://localhost:4000/jobPost", jobPostData, {headers})
+   axios.post("https://job-portal-backend-jk06.onrender.com/jobPost", jobPostData, {headers})
    .then((res)=>{
      setJobPostData(res.data)
      console.log(res.data)
@@ -89,7 +89,7 @@ const Jobpost = () => {
   const handleEditButton=()=>{
     const jobId = jobPostData._id;
 
-    axios.put(`http://localhost:4000/updateJobPost`, jobPostData, {
+    axios.put(`https://job-portal-backend-jk06.onrender.com/updateJobPost`, jobPostData, {
       params: {
         _id: jobId,
       },
