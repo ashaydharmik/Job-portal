@@ -10,6 +10,10 @@ const cors = require("cors")
 
 const app = express();
 
+app.use("/",(req,res)=>{
+    res.send("server is running")
+})
+
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
