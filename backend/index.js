@@ -13,7 +13,9 @@ app.use(cors({
     credentials: true,
 }))
 
-
+app.use("/test",(req,res)=>{
+    res.send("server running")
+})
 
 app.use(express.json())
 app.use(bodyParser.json())
