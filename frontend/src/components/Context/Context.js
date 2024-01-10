@@ -44,9 +44,7 @@ const AppProvider = ({children}) =>{
 
 //to fetch single job view details button function
 const handleViewJob = (jobId) => {
-    axios.get('https://job-portal-backend-5gknlj8lh-ashays-projects-5d384c1a.vercel.app/fetchJobPost', {
-      withCredentials: true,
-  },
+    axios.get('https://job-portal-backend-5gknlj8lh-ashays-projects-5d384c1a.vercel.app/fetchJobPost',
    {
       params: {
         _id: jobId,
@@ -71,9 +69,7 @@ const handleViewJob = (jobId) => {
   //handle edit job button functionality
   const handleEditJob = (jobId) => {
     axios
-      .get('https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/fetchJobPost', {
-        withCredentials: true,
-    },
+      .get('https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/fetchJobPost',
     {
         params: {
           _id: jobId,

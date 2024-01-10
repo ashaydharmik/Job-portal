@@ -91,9 +91,7 @@ const Jobpost = () => {
   const handleEditButton=()=>{
     const jobId = jobPostData._id;
 
-    axios.put(`https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/updateJobPost`, jobPostData,{
-      withCredentials: true,
-    },
+    axios.put(`https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/updateJobPost`,
      {
       params: {
         _id: jobId,
