@@ -18,6 +18,9 @@ app.use(cors(
     }
     
 ));
+// Enable preflight requests for all routes
+app.options('*', cors());
+
 app.use("/",(req,res)=>{
     res.send("server is running")
 })
