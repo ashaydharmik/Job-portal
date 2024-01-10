@@ -14,7 +14,7 @@ const [searchedJobs, setSearchedJobs] = useState([])
 
 
   useEffect(() => {
-    axios.get('https://job-portal-backend-seven.vercel.app/getJobPost', {
+    axios.get('https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/getJobPost', {
       withCredentials: true,
   })
     .then((res) => {

@@ -24,7 +24,7 @@ const Register = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("https://job-portal-backend-seven.vercel.app/register", formData, {
+      const response = await axios.post("https://job-portal-backend-3gkptgsif-ashays-projects-5d384c1a.vercel.app/register", formData, {
         withCredentials: true,
       });
   
