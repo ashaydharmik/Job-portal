@@ -45,6 +45,9 @@ const AppProvider = ({children}) =>{
 //to fetch single job view details button function
 const handleViewJob = (jobId) => {
     axios.get('https://job-portal-backend-seven.vercel.app/fetchJobPost', {
+      withCredentials: true,
+  },
+   {
       params: {
         _id: jobId,
       }
@@ -69,6 +72,9 @@ const handleViewJob = (jobId) => {
   const handleEditJob = (jobId) => {
     axios
       .get('https://job-portal-backend-seven.vercel.app/fetchJobPost', {
+        withCredentials: true,
+    },
+    {
         params: {
           _id: jobId,
         },

@@ -10,10 +10,6 @@ const cors = require("cors")
 
 const app = express();
 
-app.use("/",(req,res)=>{
-    res.send("server is running")
-})
-
 app.use(cors(
     {
         origin : ["https://job-portal-frontend-ten.vercel.app"],
@@ -22,6 +18,10 @@ app.use(cors(
     }
     
 ));
+app.use("/",(req,res)=>{
+    res.send("server is running")
+})
+
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))

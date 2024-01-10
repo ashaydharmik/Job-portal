@@ -24,7 +24,9 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("https://job-portal-backend-seven.vercel.app/login", formData);
+      const response = await axios.post("https://job-portal-backend-seven.vercel.app/login", formData, {
+        withCredentials: true,
+      });
   
       // Assuming your API response includes a token and user name
       const { accessToken, recruiterName } = response.data;
