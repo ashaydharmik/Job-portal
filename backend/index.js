@@ -5,17 +5,9 @@ dotenv.config()
 const bodyParser = require("body-parser")
 const cors = require("cors")
 
-
-
-
 const app = express();
 
-app.use(cors({
-    origin: ["https://job-portal-frontend-jf4zawj3l-ashays-projects-5d384c1a.vercel.app"],
-    methods: ["GET", "POST", "PUT"],
-    credentials: true,
-}));
-
+app.use(cors());
 
 app.use("/",(req,res)=>{
     res.send("server is running")
@@ -24,7 +16,7 @@ app.use("/",(req,res)=>{
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-app.options('*', cors());
+
 app.use("/", require("./routes/userRoute"))
 
 
